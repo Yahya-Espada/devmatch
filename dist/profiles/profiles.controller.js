@@ -23,8 +23,18 @@ let ProfilesController = class ProfilesController {
         return id;
     }
     create(createProfileDto) {
-        return createProfileDto;
+        return {
+            name: createProfileDto.name,
+            description: createProfileDto.description,
+        };
     }
+    update(id, updateProfileDto) {
+        return {
+            id,
+            ...updateProfileDto
+        };
+    }
+    remove(id) { }
 };
 exports.ProfilesController = ProfilesController;
 __decorate([
@@ -48,6 +58,22 @@ __decorate([
     __metadata("design:paramtypes", [create_profile_dto_1.CreateProfileDto]),
     __metadata("design:returntype", void 0)
 ], ProfilesController.prototype, "create", null);
+__decorate([
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, create_profile_dto_1.CreateProfileDto]),
+    __metadata("design:returntype", void 0)
+], ProfilesController.prototype, "update", null);
+__decorate([
+    (0, common_1.Delete)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], ProfilesController.prototype, "remove", null);
 exports.ProfilesController = ProfilesController = __decorate([
     (0, common_1.Controller)('profiles')
 ], ProfilesController);

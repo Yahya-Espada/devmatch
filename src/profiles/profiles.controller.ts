@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Query, Param, Post, Body } from '@nestjs/common';
+import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus } from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 @Controller('profiles')
 export class ProfilesController {
@@ -13,6 +13,25 @@ export class ProfilesController {
   }
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {
-    return createProfileDto;
+    return {
+        name: createProfileDto.name,
+        description: createProfileDto.description,
+    };
   }
+    @Put(':id')
+    update(
+    @Param('id') id: string,
+    @Body() updateProfileDto: CreateProfileDto,
+    )
+    {
+        return {
+        id,
+        ...updateProfileDto
+        };
+    } 
+    @Delete(':id')
+    @HttpCode(HttpStatus.NO_CONTENT)
+    remove(@Param('id') id: string) {}
+
+
 }

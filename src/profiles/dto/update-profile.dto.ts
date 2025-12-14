@@ -1,4 +1,4 @@
-export class CreateProfileDto {
+export class UpdateProfileDto {
   name: string;
   description: string;
 }
