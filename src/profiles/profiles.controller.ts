@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus, HttpException } from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
@@ -14,6 +14,7 @@ constructor(private profilesService: ProfilesService) {}
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.profilesService.findOne(id);
+    //throw new HttpException('Not implemented', HttpStatus.NOT_IMPLEMENTED);
   }
   @Post()
   create(@Body() createProfileDto: CreateProfileDto) {
@@ -28,8 +29,7 @@ constructor(private profilesService: ProfilesService) {}
       return this.profilesService.update(id, updateProfileDto);
   } 
   @Delete(':id')
-  @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: string) : void {
-      this.profilesService.remove(id);
+  remove(@Param('id') id: string) {
+    return this.profilesService.remove(id);
   }
 }
