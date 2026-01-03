@@ -16,6 +16,7 @@ exports.ProfilesController = void 0;
 const common_1 = require("@nestjs/common");
 const create_profile_dto_1 = require("./dto/create-profile.dto");
 const profiles_service_1 = require("./profiles.service");
+const update_profile_dto_1 = require("./dto/update-profile.dto");
 let ProfilesController = class ProfilesController {
     profilesService;
     constructor(profilesService) {
@@ -28,15 +29,14 @@ let ProfilesController = class ProfilesController {
         return this.profilesService.findOne(id);
     }
     create(createProfileDto) {
-        return this.profilesService.create(createProfileDto.name, createProfileDto.description);
+        return this.profilesService.create(createProfileDto);
     }
     update(id, updateProfileDto) {
-        return {
-            id,
-            ...updateProfileDto
-        };
+        return this.profilesService.update(id, updateProfileDto);
     }
-    remove(id) { }
+    remove(id) {
+        this.profilesService.remove(id);
+    }
 };
 exports.ProfilesController = ProfilesController;
 __decorate([
@@ -64,7 +64,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, create_profile_dto_1.CreateProfileDto]),
+    __metadata("design:paramtypes", [String, update_profile_dto_1.UpdateProfileDto]),
     __metadata("design:returntype", void 0)
 ], ProfilesController.prototype, "update", null);
 __decorate([
