@@ -54,14 +54,14 @@ __decorate([
 ], ProfilesController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)(new common_1.ValidationPipe())),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_profile_dto_1.CreateProfileDto]),
     __metadata("design:returntype", void 0)
 ], ProfilesController.prototype, "create", null);
 __decorate([
     (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_profile_dto_1.UpdateProfileDto]),
@@ -69,7 +69,7 @@ __decorate([
 ], ProfilesController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Param)('id', common_1.ParseUUIDPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)

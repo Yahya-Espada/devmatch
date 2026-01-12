@@ -20,12 +20,12 @@ export declare class ProfilesController {
         description: string;
         id: `${string}-${string}-${string}-${string}-${string}`;
     };
-    update(id: string, updateProfileDto: UpdateProfileDto): {
+    update(id: UUID, updateProfileDto: UpdateProfileDto): {
         id: `${string}-${string}-${string}-${string}-${string}`;
         name: string;
         description: string;
     };
-    remove(id: string): {
+    remove(id: UUID): {
         id: `${string}-${string}-${string}-${string}-${string}`;
         name: string;
         description: string;

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus, HttpException, NotFoundException , ParseUUIDPipe} from '@nestjs/common';
+import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus, HttpException, NotFoundException , ParseUUIDPipe , ValidationPipe} from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
@@ -18,13 +18,13 @@ constructor(private profilesService: ProfilesService) {}
     
   }
   @Post()
-  create(@Body() createProfileDto: CreateProfileDto) {
+  create(@Body(new ValidationPipe()) createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);
   }
   @Put(':id')
   update(
   @Param('id' , ParseUUIDPipe) id: UUID,
-  @Body() updateProfileDto: UpdateProfileDto,
+  @Body(new ValidationPipe()) updateProfileDto: UpdateProfileDto,
   )
   {
       return this.profilesService.update(id, updateProfileDto);
