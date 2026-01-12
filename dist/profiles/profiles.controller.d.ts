@@ -1,6 +1,7 @@
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import type { UUID } from 'crypto';
 export declare class ProfilesController {
     private profilesService;
     constructor(profilesService: ProfilesService);
@@ -9,7 +10,7 @@ export declare class ProfilesController {
         name: string;
         description: string;
     }[];
-    findOne(id: string): {
+    findOne(id: UUID): {
         id: `${string}-${string}-${string}-${string}-${string}`;
         name: string;
         description: string;
