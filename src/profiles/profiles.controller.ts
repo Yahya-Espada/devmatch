@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Controller, Get, Query, Param, Post, Body, Put, Delete, HttpCode, HttpStatus, HttpException, NotFoundException , ParseUUIDPipe , ValidationPipe} from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Put, Delete , ParseUUIDPipe , UseGuards} from '@nestjs/common';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import type { UUID } from 'crypto';
+import { ProfilesGuard } from './profiles.guard';
 @Controller('profiles')
 export class ProfilesController {
 constructor(private profilesService: ProfilesService) {}
@@ -30,6 +31,7 @@ constructor(private profilesService: ProfilesService) {}
       return this.profilesService.update(id, updateProfileDto);
   } 
   @Delete(':id')
+  @UseGuards(ProfilesGuard) /* Protect this route with ProfilesGuard (7atit false donc mamno3) */
   remove(@Param('id', ParseUUIDPipe) id: UUID) {
     return this.profilesService.remove(id);
   }
